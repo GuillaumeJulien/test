@@ -1,0 +1,9 @@
+<div class="dashboard">
+  <div *ngIf="loadingFeeds" class="loader-container">
+    <div>
+      <h3>Chargement de votre actualitée</h3>
+    </div>
+    <mat-spinner></mat-spinner>
+  </div>
+  <app-feed *ngFor="let feed of feeds" [feed]="feed"></app-feed>
+</div>

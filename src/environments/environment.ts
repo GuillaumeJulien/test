@@ -3,7 +3,9 @@
 // The list of file replacements can be found in `angular.json`.
 
 export const environment = {
-  production: false
+  production: false,
+  clientId: 'test',
+  oauthUrl: 'https://api.wizbii.com/v1/account/validate'
 };
 
 /*

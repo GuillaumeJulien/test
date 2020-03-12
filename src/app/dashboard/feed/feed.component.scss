@@ -1,0 +1,19 @@
+.card-container{
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  .card{
+    width: 45rem;
+    margin: 25px 0;
+    min-height: 15rem;
+    &__content {
+      padding: 10px;
+      &__shared {
+        &__skills {
+         margin: 10px;
+        }
+      }
+    }
+  }
+}
