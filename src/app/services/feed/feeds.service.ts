@@ -12,7 +12,7 @@ export class FeedsService {
   constructor(private resourcesService: ResourcesService) {
   }
 
-  getFeeds(): Observable<Array<Feed>> {
+  getFeeds(): Observable<Feed[]> {
     return this.resourcesService.getFeedResources('/v2/dashboard/?direction=newest')
       .pipe(map(value => {
         return value.feed_items.feed_items.map((feed) => {

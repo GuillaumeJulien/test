@@ -1,18 +1,27 @@
 export class Publication {
-  public slug;
-  public dateCreated;
-  public status;
-  public name;
-  public industry;
-  public sharedJob;
+  slug;
+  dateCreated;
+  status;
+  name;
+  industry;
+  sharedJob;
+  poster: object;
+  company: object;
+  content: object;
+  tags: [];
+  attachmentPicture: string;
 
   constructor(value) {
-    const {slug, date_created, status, name, industry, shared_job} = value;
-    this.slug = slug;
-    this.dateCreated = date_created;
-    this.status = status;
-    this.name = name;
-    this.industry = industry;
-    this.sharedJob = shared_job;
+    this.slug = value.slug ;
+    this.dateCreated = value.date_created;
+    this.status = value.status;
+    this.name = value.name;
+    this.industry = value.industry;
+    this.sharedJob = value.shared_job;
+    this.poster = value.poster;
+    this.company = value.company;
+    this.content = value.content;
+    this.tags = value.tags;
+    this.attachmentPicture = value.attachment_picture;
   }
 }

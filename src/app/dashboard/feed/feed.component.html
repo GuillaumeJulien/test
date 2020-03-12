@@ -15,6 +15,10 @@
           <mat-chip color="accent" selected>{{feed.publication.sharedJob.contract.title}}</mat-chip>
         </mat-chip-list>
       </div>
+      <div *ngIf="feed.publication.company.industry != null">
+        <img mat-card-image alt="banner" src="{{feed.publication.attachmentPicture}}"/>
+        <p>{{feed.publication.content}}</p>
+      </div>
     </mat-card-content>
     <mat-card-actions>
       <button mat-button (click)="addThanks()" matBadge="{{getThanks()}}" matBadgePosition="after">Thank's </button>

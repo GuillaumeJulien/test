@@ -3,8 +3,8 @@ import {Publication} from './publication';
 export class Feed {
   id: string;
   type: string;
-  private reasons: any[];
-  private date: string;
+  reasons: any[];
+  date: string;
   publication: Publication;
 
   constructor(value) {
@@ -13,6 +13,6 @@ export class Feed {
     this.type = type;
     this.reasons = reasons;
     this.date = date;
-    this.publication = new Publication(publication);
+    this.publication = publication != null ? new Publication(publication) : publication;
   }
 }

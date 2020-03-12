@@ -1,6 +1,7 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnDestroy, OnInit} from '@angular/core';
 import {FeedsService} from '../services/feed/feeds.service';
 import {Feed} from '../class/feed';
+import {Subscription} from 'rxjs';
 
 @Component({
   selector: 'app-dashboard',
@@ -10,20 +11,23 @@ import {Feed} from '../class/feed';
 export class DashboardComponent implements OnInit {
   protected feeds: Feed[];
   private loadingFeeds: boolean;
+  private feedsSubscription: Subscription;
 
   constructor(private feedsService: FeedsService) {
   }
 
   ngOnInit() {
     this.loadingFeeds = true;
-    this.feedsService.getFeeds().subscribe((value => {
-      console.log(value);
-      this.feeds = value;
+    this.feedsSubscription = this.feedsService.getFeeds().subscribe((feeds => {
+      this.feeds = feeds.filter(feed => {
+        if (feed.publication && feed.publication.company) {
+          return feed.publication.company.status !== 'BANNI';
+        }
+      });
     }), error => {
       return error;
     }, () => {
       this.loadingFeeds = false;
     });
   }
-
 }
