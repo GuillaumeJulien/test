@@ -14,7 +14,7 @@ export class FeedsService {
 
   getFeeds(): Observable<Feed[]> {
     return this.resourcesService.getFeedResources('/v2/dashboard/?direction=newest')
-      .pipe(map(value => {
+      .pipe(map((value: any) => {
         return value.feed_items.feed_items.map((feed) => {
           return new Feed(feed);
         });

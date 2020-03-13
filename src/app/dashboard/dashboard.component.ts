@@ -1,7 +1,8 @@
-import {Component, OnDestroy, OnInit} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {FeedsService} from '../services/feed/feeds.service';
 import {Feed} from '../class/feed';
 import {Subscription} from 'rxjs';
+import {AuthService} from '../services/auth/auth.service';
 
 @Component({
   selector: 'app-dashboard',
@@ -13,7 +14,11 @@ export class DashboardComponent implements OnInit {
   private loadingFeeds: boolean;
   private feedsSubscription: Subscription;
 
-  constructor(private feedsService: FeedsService) {
+  constructor(private feedsService: FeedsService, private authService: AuthService) {
+  }
+
+  getUserFullName() {
+    return this.authService.profile.name;
   }
 
   ngOnInit() {

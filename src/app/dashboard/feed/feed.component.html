@@ -1,5 +1,5 @@
 <div class="card-container">
-  <mat-card *ngIf="feed.type === 'publication'" class="card">
+  <mat-card *ngIf="feed.type === 'publication'" class="card-publication">
     <mat-card-header>
       <mat-card-title>{{feed.publication.poster.displayName}}</mat-card-title>
       <mat-card-subtitle>{{timeAgo()}}</mat-card-subtitle>
@@ -9,7 +9,7 @@
         <div class="card__content__shared" [innerHTML]="feed.publication.sharedJob.mission"></div>
         <mat-chip-list class="card__content__shared__skills">
           <mat-chip color="primary" selected
-                    *ngFor="let skill of feed.publication.sharedJob.skills">
+                    *ngFor="let skill  of feed.publication.sharedJob.skills"  routerLink="['/skill/{{skill.slug}}']">
             #{{skill.name}}
           </mat-chip>
           <mat-chip color="accent" selected>{{feed.publication.sharedJob.contract.title}}</mat-chip>

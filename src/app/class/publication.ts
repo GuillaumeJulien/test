@@ -4,10 +4,10 @@ export class Publication {
   status;
   name;
   industry;
-  sharedJob;
-  poster: object;
-  company: object;
-  content: object;
+  sharedJob: any;
+  poster: any;
+  company: any;
+  content: any;
   tags: [];
   attachmentPicture: string;
 

@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 
 import { DashboardRoutingModule } from './dashboard-routing.module';
 import { DashboardComponent } from './dashboard.component';
-import {MatBadgeModule, MatButtonModule, MatCardModule, MatChipsModule, MatProgressSpinnerModule} from '@angular/material';
+import {MatBadgeModule, MatButtonModule, MatCardModule, MatChipsModule, MatIconModule, MatProgressSpinnerModule} from '@angular/material';
 import { FeedComponent } from './feed/feed.component';
 
 
@@ -16,7 +16,8 @@ import { FeedComponent } from './feed/feed.component';
     MatCardModule,
     MatChipsModule,
     MatButtonModule,
-    MatBadgeModule
+    MatBadgeModule,
+    MatIconModule
   ]
 })
 export class DashboardModule { }

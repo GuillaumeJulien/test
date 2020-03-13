@@ -5,5 +5,28 @@
     </div>
     <mat-spinner></mat-spinner>
   </div>
+  <div class="card-container">
+    <mat-card class="card-user">
+      <mat-card-header class="card-user__header">
+        <mat-card-title class="card-user__header__title">Hello {{getUserFullName()}} !</mat-card-title>
+        <mat-card-subtitle></mat-card-subtitle>
+      </mat-card-header>
+      <mat-card-content class="card-user__content">
+        <div class="card-user__content__help">
+          <div class="card-user__content__help__container">
+            <p>Besoin d'aide ?</p>
+            <mat-icon>help</mat-icon>
+          </div>
+        </div>
+        <div class="card-user__content__share">
+          <div class="card-user__content__share__container">
+            <p>Partagez des nouvelles !</p>
+            <mat-icon>share</mat-icon>
+          </div>
+        </div>
+      </mat-card-content>
+
+    </mat-card>
+  </div>
   <app-feed *ngFor="let feed of feeds" [feed]="feed"></app-feed>
 </div>

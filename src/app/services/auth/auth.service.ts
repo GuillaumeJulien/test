@@ -2,7 +2,6 @@ import {Injectable} from '@angular/core';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {CookieService} from 'ngx-cookie-service';
 import {Router} from '@angular/router';
-import {SessionService} from '../users/session.service';
 
 @Injectable({
   providedIn: 'root'
@@ -10,10 +9,14 @@ import {SessionService} from '../users/session.service';
 export class AuthService {
   private accessToken: string;
   private baseUrl = 'https://api.wizbii.com/';
+  public profile;
 
   constructor(private http: HttpClient,
               private cookieService: CookieService,
               private router: Router) {
+    if (this.isLoggedIn()) {
+      this.profile = JSON.parse(localStorage.getItem(`user#${this.getAccessToken()}`));
+    }
   }
 
   obtainAccessToken({username, password}) {
@@ -26,7 +29,9 @@ export class AuthService {
     return this.http.post(this.baseUrl + 'v1/account/validate', body.toString(), {
       headers
     }).subscribe(
-      data => this.saveToken(data['access-token']),
+      data => {
+        this.saveSession(data);
+      },
       error => error
     );
   }
@@ -42,11 +47,20 @@ export class AuthService {
     return this.getAccessToken() != null;
   }
 
+  saveProfile(profile, accessToken) {
+    this.profile = profile;
+    localStorage.setItem(`user#${accessToken}`, JSON.stringify(profile));
+  }
+
+  async saveSession(sessionData) {
+    this.saveProfile(sessionData.profile, sessionData['access-token']);
+    await this.saveToken(sessionData['access-token']);
+  }
+
   async saveToken(token) {
     this.accessToken = token;
-    const expireDate = new Date().getTime() + (1000 * token.expires_in);
+    const expireDate = new Date().getTime() + 1000;
     this.cookieService.set('access_token', token, expireDate);
     await this.router.navigate(['/'], {replaceUrl: true});
-    return true;
   }
 }
